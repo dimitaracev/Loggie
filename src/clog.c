@@ -74,7 +74,7 @@ void prepare_(enum level _level, char *format, va_list args)
     {
         for(int i = 0; i < Logger.files; i++)
         {
-            fprintf(Logger.fds[i], "%s %s :", levels[_level], timestamp_());
+            fprintf(Logger.fds[i], "%s %s : ", timestamp_(), levels[_level]);
             vfprintf(Logger.fds[i], format, args);
             fprintf(Logger.fds[i], "\n");
             fflush(Logger.fds[i]);
