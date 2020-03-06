@@ -10,16 +10,19 @@ A minimal C logging library
 
  int main(void)
  {
-    // Print to stderr
+    // Prints to stderr and/or to file descriptors
     log_("Hello World");
     warn_("Warning World");
     info_("Info World");
     error_("Error World");
 
     // Add file to print to
-    // Must call init_() first to initialize file array
+    // Optional : it can be initialized with stick_
+    // Initializes the file descriptor array
     init_();
+    // File descriptor
     FILE *stick = fopen("sticked", "a");
+    // Adds file to log logs to
     stick_(stick);
  } 
 

@@ -2,7 +2,7 @@
 
 
 typedef unsigned int uint;
-
+static short int instantiated = 0;
 struct logger
 {
     FILE **fds;
@@ -12,9 +12,15 @@ struct logger
 
 void init_()
 {
+    if(!instantiated){
     Logger.fds = (FILE **)malloc(sizeof(FILE *) * 1);
     *(Logger.fds) = (FILE *)malloc(sizeof(FILE) * 1);
     Logger.files = 0;
+    instantiated = 1;
+    }
+    else {
+        fprintf(stderr, "Already instancianted");
+    }
 }
 
 static const char *levels[] = {"LOG", "WARN", "INFO", "ERROR"};
@@ -30,6 +36,8 @@ static char *timestamp_()
 
 void stick_(FILE *file)
 {
+    if(!instantiated)
+        init_();
     Logger.fds[Logger.files] = file;
     Logger.fds = realloc(Logger.fds, sizeof(FILE *) * ++Logger.files);
 }
