@@ -1,4 +1,4 @@
-#include "clog.h"
+#include "logc.h"
 
 
 typedef unsigned int uint;

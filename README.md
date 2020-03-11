@@ -1,11 +1,11 @@
-# CLog
+# Log C
 A minimal C logging library
 
 # Usage
 
  ```c
 
- #include "clog.h"
+ #include "logc.h"
  #include <stdio.h>
 
  int main(void)
