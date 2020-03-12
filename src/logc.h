@@ -1,5 +1,5 @@
-#ifndef CLOG_H
-#define CLOG_H
+#ifndef LOGC_H
+#define LOGC_H
 #include <stdarg.h>
 #include <stdio.h>
 #include <stdlib.h>
