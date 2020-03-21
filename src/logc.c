@@ -1,12 +1,10 @@
 #include "logc.h"
 
-
-typedef unsigned int uint;
 static short int instantiated = 0;
 struct logger
 {
     FILE **fds;
-    uint files;
+    int files;
     
 } Logger;
 
@@ -19,7 +17,7 @@ void init_()
     instantiated = 1;
     }
     else {
-        fprintf(stderr, "Already instancianted");
+        fprintf(stderr, "Already instantianted");
     }
 }
 
@@ -46,7 +44,7 @@ void log_(char *format, ...)
 {
     va_list args;
     va_start(args, format);
-    prepare_(LOG, format, args);
+    print_(LOG, format, args);
     va_end(args);
 }
 
@@ -54,25 +52,25 @@ void warn_(char *format, ...)
 {
     va_list args;
     va_start(args, format);
-    prepare_(WARN, format, args);
+    print_(WARN, format, args);
     va_end(args);
 }
 void info_(char *format, ...)
 {
     va_list args;
     va_start(args, format);
-    prepare_(INFO, format, args);
+    print_(INFO, format, args);
     va_end(args);
 }
 void error_(char *format, ...)
 {
     va_list args;
     va_start(args, format);
-    prepare_(ERROR, format, args);
+    print_(ERROR, format, args);
     va_end(args);
 }
 
-void prepare_(enum level _level, char *format, va_list args)
+void print_(enum level _level, char *format, va_list args)
 {
     fprintf(stderr, "%s %s : ", timestamp_() ,levels[_level]);
     vfprintf(stderr, format, args);

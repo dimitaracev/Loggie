@@ -10,7 +10,7 @@ enum level {
 };
 
 void init_();
-static void prepare_(enum level _level, char* format, va_list args);
+static void print_(enum level _level, char* format, va_list args);
 static char* timestamp_();
 
 void stick_(FILE *file);
