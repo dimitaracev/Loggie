@@ -20,6 +20,8 @@ A minimal C logging library
     FILE *stick = fopen("sticked", "a");
     // Adds file to log to
     Stick(stick);
+    // free all file descriptors
+    Close();
  } 
 
  ```

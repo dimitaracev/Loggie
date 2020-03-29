@@ -1,4 +1,6 @@
 #include "logc.h"
+
+
 static short int instantiated = 0;
 struct logger
 {
@@ -20,6 +22,14 @@ void init_()
     {
         fprintf(stderr, "Already instantianted");
     }
+}
+
+void close_(){
+    for(int i = 0; i < Logger.files; i++)
+    {
+        free(Logger.fds[i]);
+    }
+    free(Logger.fds);
 }
 
 static const char *levels[] = {"LOG", "WARN", "INFO", "ERROR"};
@@ -75,20 +85,22 @@ void error_(char *file, int line, char *format, ...)
 
 void print_(enum level _level, char *format, char *file, int line, va_list args)
 {
+    char* timestamp = timestamp_();
     if (Logger.files > 0)
     {
         for (int i = 0; i < Logger.files; i++)
         {
             va_list argsCopy;
             va_copy(argsCopy, args);
-            fprintf(Logger.fds[i], "%s [File: %s Line: %d] %s : ", timestamp_(), file, line, levels[_level]);
+            fprintf(Logger.fds[i], "%s [File: %s Line: %d] %s : ", timestamp, file, line, levels[_level]);
             vfprintf(Logger.fds[i], format, argsCopy);
             fprintf(Logger.fds[i], "\n");
             fflush(Logger.fds[i]);
         }
     }
-    fprintf(stderr, "%s [File: %s Line: %d] %s : ", timestamp_(), file, line, levels[_level]);
+    fprintf(stderr, "%s [File: %s Line: %d] %s : ", timestamp, file, line, levels[_level]);
     vfprintf(stderr, format, args);
     fprintf(stderr, "\n");
     fflush(stderr);
+    free(timestamp);
 }
