@@ -1,5 +1,4 @@
 # Log C
-A minimal C logging library
 
 # Usage
 
@@ -23,5 +22,4 @@ A minimal C logging library
     // free all file descriptors
     Close();
  } 
-
  ```
