@@ -1,5 +1,4 @@
 #include "logc.h"
-
 static short int instantiated = 0;
 struct logger
 {
@@ -40,39 +39,41 @@ void stick_(FILE *file)
     Logger.fds = realloc(Logger.fds, sizeof(FILE *) * ++Logger.files);
 }
 
-void log_(char *format, ...)
+void log_(char *format, char* file, int line, ...)
 {
     va_list args;
-    va_start(args, format);
-    print_(LOG, format, args);
+    va_start(args, line);
+    print_(LOG, format, file,line,args);
     va_end(args);
 }
 
-void warn_(char *format, ...)
+void warn_(char *format, char* file, int line, ...)
 {
     va_list args;
-    va_start(args, format);
-    print_(WARN, format, args);
-    va_end(args);
-}
-void info_(char *format, ...)
-{
-    va_list args;
-    va_start(args, format);
-    print_(INFO, format, args);
-    va_end(args);
-}
-void error_(char *format, ...)
-{
-    va_list args;
-    va_start(args, format);
-    print_(ERROR, format, args);
+    va_start(args, line);
+    print_(WARN, format, file, line, args);
     va_end(args);
 }
 
-void print_(enum level _level, char *format, va_list args)
+void info_(char *format,char* file, int line, ...)
 {
-    fprintf(stderr, "%s %s : ", timestamp_() ,levels[_level]);
+    va_list args;
+    va_start(args, line);
+    print_(INFO, format, file,line, args);
+    va_end(args);
+}
+
+void error_(char *format,char* file, int line, ...)
+{
+    va_list args;
+    va_start(args, line);
+    print_(ERROR, format, file, line, args);
+    va_end(args);
+}
+
+void print_(enum level _level, char *format, char* file, int line, va_list args)
+{
+    fprintf(stderr, "%s [File: %s Line: %d] %s : ", timestamp_(), file, line,levels[_level]);
     vfprintf(stderr, format, args);
     fprintf(stderr, "\n");
     fflush(stderr);

@@ -5,24 +5,20 @@ A minimal C logging library
 
  ```c
 
- #include "logc.h"
+ #include "src/logc.h"
  #include <stdio.h>
 
  int main(void)
  {
     // Prints to stderr and/or to file descriptors
-    log_("Hello World");
-    warn_("Warning World");
-    info_("Info World");
-    error_("Error World");
+    Log("Hello World");
+    Warn("Warning World");
+    Info("Info World");
+    Error("Error World");
 
-    // Add file to print to
-    // Optional : it can be initialized with stick_
-    // Initializes the file descriptor array
-    init_();
     // File descriptor
     FILE *stick = fopen("sticked", "a");
-    // Adds file to log logs to
+    // Adds file to log to
     stick_(stick);
  } 
 
