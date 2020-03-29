@@ -19,7 +19,7 @@ A minimal C logging library
     // File descriptor
     FILE *stick = fopen("sticked", "a");
     // Adds file to log to
-    stick_(stick);
+    Stick(stick);
  } 
 
  ```
