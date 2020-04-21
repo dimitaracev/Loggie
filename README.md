@@ -1,27 +1,25 @@
 # Log C
+
 A minimal C logging library
 
 # Usage
 
- ```c
+```c
 
- #include "src/logc.h"
- #include <stdio.h>
+#include "src/logc.h"
 
- int main(void)
- {
-    // Prints to stderr and/or to file descriptors
-    Log("Hello World");
-    Warn("Warning World");
-    Info("Info World");
-    Error("Error World");
+int main(void)
+{
+   // Prints to stderr and/or to connected file descriptors
+   Log("Hello World");
+   Warn("Warning World");
+   Info("Info World");
+   Error("Error World");
 
-    // File descriptor
-    FILE *stick = fopen("sticked", "a");
-    // Adds file to log to
-    Stick(stick);
-    // free all file descriptors
-    Close();
- } 
+   // Create a file descriptor
+   FILE *connector = fopen("connected", "a");
+   // Connect file descriptor to logger
+   Connect(connector);
+}
 
- ```
+```
