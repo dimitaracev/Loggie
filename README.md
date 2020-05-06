@@ -1,4 +1,4 @@
-# Log C
+# Loggie
 
 A minimal C logging library
 
@@ -6,7 +6,7 @@ A minimal C logging library
 
 ```c
 
-#include "src/logc.h"
+#include "src/loggie.h"
 
 int main(void)
 {
@@ -16,10 +16,10 @@ int main(void)
    Info("Info World");
    Error("Error World");
 
-   // Create a file descriptor
-   FILE *connector = fopen("connected", "a");
-   // Connect file descriptor to logger
-   Connect(connector);
+   // Create file descriptor and connect to logger
+   Connect("loggie.log");
+   // Clean up memory
+   Clean();
 }
 
 ```
