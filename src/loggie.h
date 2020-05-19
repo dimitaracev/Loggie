@@ -27,7 +27,6 @@ struct logger
         if (!Logger.initialized)                              \
         {                                                     \
             Logger.fds = (FILE **)malloc(sizeof(FILE *) * 1); \
-            *(Logger.fds) = (FILE *)malloc(sizeof(FILE) * 1); \
             Logger.files = 0;                                 \
             Logger.initialized = true;                        \
         }                                                     \
