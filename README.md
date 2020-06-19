@@ -1,11 +1,9 @@
 # Loggie
-
-A minimal C logging library
+Loggie is a simple, header file only logging library. It can log to console as well as files.
 
 # Usage
 
 ```c
-
 #include "src/loggie.h"
 
 int main(void)
@@ -21,5 +19,4 @@ int main(void)
    // Clean up memory
    Clean();
 }
-
 ```
